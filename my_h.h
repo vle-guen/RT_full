@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:30:13 by avella            #+#    #+#             */
-/*   Updated: 2016/06/09 13:56:04 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 08:58:27 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,25 @@ typedef struct						s_obj
 	struct s_obj	*next;
 }									t_obj;
 
+typedef struct						s_color
+{
+	double			value;
+	t_obj			*obj_tmp;
+}									t_color;
+
 typedef struct						s_env
 {
   int sky;
   int no;
 	t_vec3d			sl;
-	t_vec3d			pos;
+	t_vec3d			position;
+	t_color			*color_infos;
 	t_effect		effect;
 	t_obj			*obj;
-  t_img *skybox;
-	t_obj			*obj_tmp;
+	t_img			*skybox;
 	t_obj			*light;
 	double			nl;
-	double			value;
-  int x;
+	int				x;
 	char			*name;
 	t_img			*img;
 	void			*mlx;

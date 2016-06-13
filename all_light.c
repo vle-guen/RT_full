@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:59:29 by avella            #+#    #+#             */
-/*   Updated: 2016/05/26 17:03:07 by avella           ###   ########.fr       */
+/*   Updated: 2016/06/13 08:51:19 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ t_vec3d		give_vec(t_obj *obj, t_env *e)
 	//rotate en negatif pour afficher dans plan
 	my_vec = (t_vec3d){obj->rot.x, obj->rot.y,obj->rot.z};
 	if (obj->type == 1)
-	  my_vec = a_moin_b(&(e->pos), &obj->pos);
+	  my_vec = a_moin_b(&(e->position), &obj->pos);
 	else if (obj->type == 2 || obj->type == 3)
 	{
-		my_vec.x = e->pos.x - obj->pos.x;
-		my_vec.y = e->pos.y - obj->pos.y;;
-		my_vec.z = e->pos.z - obj->pos.z;
+		my_vec.x = e->position.x - obj->pos.x;
+		my_vec.y = e->position.y - obj->pos.y;;
+		my_vec.z = e->position.z - obj->pos.z;
 	}
 	if(obj->type == 4)
 	  {
 	    //	    my_vec = e->effect.vec;
-	    my_vec.x = e->pos.x - -10;//e->effect.vec.x;//-10;
-	    my_vec.y = e->pos.y - 5;//e->effect.vec.y;//5;
-	    my_vec.z = e->pos.z - -20;// e->effect.vec.z;//-20;
+	    my_vec.x = e->position.x - -10;//e->effect.vec.x;//-10;
+	    my_vec.y = e->position.y - 5;//e->effect.vec.y;//5;
+	    my_vec.z = e->position.z - -20;// e->effect.vec.z;//-20;
 	  }
 	ajust(&my_vec);
 	return (my_vec);
@@ -44,11 +44,11 @@ t_vec3d		lambert_alg(t_obj *obj, t_env *e)
 	double		value;
 	double		d;
 
-	light = a_moin_b(&obj->pos, &(e->pos));
+	light = a_moin_b(&obj->pos, &(e->position));
 	ajust(&light);
-	d = sqrt((e->pos.x - obj->pos.x) * (e->pos.x - obj->pos.x) +
-			(e->pos.y - obj->pos.y) * (e->pos.y - obj->pos.y) +
-			(e->pos.z - obj->pos.z) * (e->pos.z - obj->pos.z));
+	d = sqrt((e->position.x - obj->pos.x) * (e->position.x - obj->pos.x) +
+			(e->position.y - obj->pos.y) * (e->position.y - obj->pos.y) +
+			(e->position.z - obj->pos.z) * (e->position.z - obj->pos.z));
 	d = lim(sqrt(1 / (d * (1.0 - obj->intens))), 0, 1);
 	value = lim(mult(&(e->effect.vec), &light), 0, 1);
 	if (e->effect.vec.x == 0 && e->effect.vec.y == 1 && e->effect.vec.z == 0)
@@ -93,7 +93,7 @@ double		phong_alg(t_obj *obj, t_env *e)
 	calc.x = e->ray_dir.x - 2 * keep * e->effect.vec.x;
 	calc.y = e->ray_dir.y - 2 * keep * e->effect.vec.y;
 	calc.z = e->ray_dir.z - 2 * keep * e->effect.vec.z;
-	light = a_moin_b(&obj->pos, &(e->pos));
+	light = a_moin_b(&obj->pos, &(e->position));
 	ajust(&light);
 	ajust(&calc);
 	keep2 = pow(lim(mult(&calc, &light), 0, 1), 20);

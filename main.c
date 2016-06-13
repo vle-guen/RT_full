@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 17:10:06 by avella            #+#    #+#             */
-/*   Updated: 2016/06/09 13:56:59 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 09:01:06 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	give_effect(t_env *e)
 {
-	e->effect.vec = give_vec(e->obj_tmp, e);
+	e->effect.vec = give_vec(e->color_infos->obj_tmp, e);
 	e->effect.shadow = give_shadow(e);
 	e->effect.light = my_light(e);
 	e->effect.bri = light_effect(e);

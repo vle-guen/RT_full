@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 17:10:06 by avella            #+#    #+#             */
-/*   Updated: 2016/06/09 12:45:08 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/09 13:56:59 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		main(int ac, char **av)
 	parsing(&e, ac, av[1]);
 	init_eye(&e);
 	get_lightspot_number(&e);
-	pov(&e);
+	init_viewpoint(&e);
 	e.v = 0;
 	e.v2 = 0;
 	e.nl = 1 / e.nl;

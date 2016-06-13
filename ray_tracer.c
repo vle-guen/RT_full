@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 17:41:04 by avella            #+#    #+#             */
-/*   Updated: 2016/06/09 12:59:29 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 09:23:01 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	eye_pos_dir(t_env *e, double x, double y)
 	e->ray_dir.x = -e->ray_dir.x;
 	e->ray_dir.z = -e->ray_dir.z;
 	e->ray_origin = e->eye_pos;
-	e->obj_tmp = NULL;
+	e->color_infos->obj_tmp = NULL;
 }
 
 void	give_my_pos(t_env *e)
 {
-	e->pos.x = e->ray_origin.x + e->value * e->ray_dir.x;
-	e->pos.y = e->ray_origin.y + e->value * e->ray_dir.y;
-	e->pos.z = e->ray_origin.z + e->value * e->ray_dir.z;
+	e->position.x = e->ray_origin.x + e->color_infos->value * e->ray_dir.x;
+	e->position.y = e->ray_origin.y + e->color_infos->value * e->ray_dir.y;
+	e->position.z = e->ray_origin.z + e->color_infos->value * e->ray_dir.z;
 	all_effect(e);
 }
 
@@ -131,17 +131,17 @@ t_vec3d reflexion_color(t_env *e, t_vec3d normal, t_vec3d color)
   t_vec3d reflex;
 
   ref = 1;
-  if(e->obj_tmp->ref > 0)
-    ref = e->obj_tmp->ref;
+  if(e->color_infos->obj_tmp->ref > 0)
+    ref = e->color_infos->obj_tmp->ref;
   if (ref < 1 && e->nb_ref < REF)
     {
       e->nb_ref += 1;
       reflex = ft_reflex(&(e->ray_dir), &normal );
       ajust(&reflex);
       normal  =  mult_value(&normal , 0.001);
-      e->pos = plus(&(e->pos), &normal );
+      e->position = plus(&(e->position), &normal );
       color =  mult_value(&(color), ref);
-      e->ray_origin = e->pos;
+      e->ray_origin = e->position;
       e->ray_dir = reflex;
       col_tmp = final_color(e);
       col_tmp =  mult_value(&col_tmp, 1 - ref);
@@ -154,7 +154,7 @@ t_vec3d refraction_color(t_env *e, t_vec3d normal, t_vec3d color)
 {
   t_vec3d col_tmp;
 
-  if(e->obj_tmp->refraction != 0 && e->myetat == 0)
+  if(e->color_infos->obj_tmp->refraction != 0 && e->myetat == 0)
     {
       e->myetat = 1;
       e->ray_dir = refract(e, &normal);
@@ -173,43 +173,46 @@ double arrondi(double value)
   return(ceil(value));
 }
 
+t_vec3d	color_type_0(t_env *e)
+{
+	t_vec3d mine;
+	      
+	e->position.x = e->ray_origin.x + e->color_infos->value * e->ray_dir.x;
+	e->position.y = e->ray_origin.y + e->color_infos->value * e->ray_dir.y;
+	e->position.z = e->ray_origin.z + e->color_infos->value * e->ray_dir.z;
+	if (fabs(e->position.y) < 0.0001)
+		e->position.y = 0;
+	mine.x = arrondi(e->position.x / 2);//2 longueur carreau 
+	mine.y = arrondi(e->position.y / 2);
+	mine.z = arrondi(e->position.z / 2); 
+	if(fmod(mine.x+mine.z+mine.y,2) == 0)
+		e->pixel_color = (t_vec3d){0,0,0};
+	else
+		e->pixel_color = (t_vec3d){1,1,1};
+	return (e->pixel_color);
+}
+
 t_vec3d	final_color(t_env *e)
 {
-  t_vec3d normal;
-  t_vec3d col_tmp;
-  t_vec3d color;
-  t_vec3d reflex;
+	t_vec3d	normal;
+	t_vec3d col_tmp;
+	t_vec3d color;
+	t_vec3d reflex;
 
-  e->value = 100000000;
-  e->obj_tmp = all_inter(e);
-  e->pixel_color = (t_vec3d){0,0,0};
-  color = (t_vec3d){0,0,0};
-  if (e->obj_tmp && e->value > 0.0001)
+	e->color_infos->value = 100000000;
+	e->color_infos->obj_tmp = all_inter(e);
+	e->pixel_color = (t_vec3d){0,0,0};
+	color = (t_vec3d){0,0,0};
+	if (e->color_infos->obj_tmp && e->color_infos->value > 0.0001)
 	{
-	  e->pixel_color = (t_vec3d){e->obj_tmp->color.x, e->obj_tmp->color.y, e->obj_tmp->color.z};
-	  if(e->obj_tmp->type == 0)
-	    {
-			t_vec3d mine;
-	      
-			e->pos.x = e->ray_origin.x + e->value * e->ray_dir.x;
-			e->pos.y = e->ray_origin.y + e->value * e->ray_dir.y;
-			e->pos.z = e->ray_origin.z + e->value * e->ray_dir.z;
-			if (fabs(e->pos.y) < 0.0001)
-				e->pos.y = 0;
-			mine.x = arrondi(e->pos.x / 2);//2 longueur carreau 
-			mine.y = arrondi(e->pos.y / 2);
-			mine.z = arrondi(e->pos.z / 2); 
-			if(fmod(mine.x+mine.z+mine.y,2) == 0)
-			{
-				e->pixel_color = (t_vec3d){0,0,0};
-			}
-			else
-				e->pixel_color = (t_vec3d){1,1,1};
-			}
-			if (e->value < 100000000)
-				give_my_pos(e);
-			color = e->pixel_color;
-			normal = give_vec(e->obj_tmp, e);
+		e->pixel_color = (t_vec3d){e->color_infos->obj_tmp->color.x,
+		e->color_infos->obj_tmp->color.y, e->color_infos->obj_tmp->color.z};
+		if (e->color_infos->obj_tmp->type == 0)
+			e->pixel_color = color_type_0(e);
+		if (e->color_infos->value < 100000000)
+			give_my_pos(e);
+		color = e->pixel_color;
+		normal = give_vec(e->color_infos->obj_tmp, e);
 	  //color = reflexion_color(e, normal, color);
 	  //color = refraction_color(e,normal, color);
 		}

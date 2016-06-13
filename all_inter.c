@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:57:53 by avella            #+#    #+#             */
-/*   Updated: 2016/05/27 16:35:30 by avella           ###   ########.fr       */
+/*   Updated: 2016/06/13 09:00:31 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ t_obj		*all_inter(t_env *e)
 	nb = 0;
 	obj = NULL;
 	my_obj = e->obj;
-	value = e->value;
+	value = e->color_infos->value;
 	while (my_obj)
 	{
 		if (my_obj->type == 0)
@@ -254,7 +254,7 @@ t_obj		*all_inter(t_env *e)
 			value = inter_cone(my_obj, e);
 		else if(my_obj->type == 4)
 		  value = inter_triangle(my_obj, e);
-		if (value > 0.0001 && value < e->value)
+		if (value > 0.0001 && value < e->color_infos->value)
 		{
 		  if(e->myetat == 1 && e->myv == nb)
 		    {
@@ -264,7 +264,7 @@ t_obj		*all_inter(t_env *e)
 		    {
 	 
 		      obj = my_obj;
-		      e->value = value;
+		      e->color_infos->value = value;
 		      if(e->myetat == 0)
 			e->myv = nb;
 		    }

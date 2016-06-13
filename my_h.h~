@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:30:13 by avella            #+#    #+#             */
-/*   Updated: 2016/06/09 13:00:22 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/09 13:56:04 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ t_vec3d								my_light(t_env *e);
 t_vec3d								lambert_alg(t_obj *obj, t_env *e);
 t_vec3d								give_vec(t_obj *obj, t_env *e);
 void								ray_tracer(t_env *e);
-void								pov(t_env *e);
+void								init_viewpoint(t_env *e);
 void								init_eye(t_env *e);
 void								get_lightspot_number(t_env *e);
 t_vec3d								eye_or(t_vec3d ray_or,

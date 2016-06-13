@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:45:33 by avella            #+#    #+#             */
-/*   Updated: 2016/06/09 13:55:14 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 09:13:44 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	init_env(t_env *e)
 	t_vec3d	give;
 
 	e->obj = NULL;
-	e->obj_tmp = NULL;
+	if (!(e->color_infos = (t_color*)malloc(sizeof(t_color))))
+		ft_putstr("malloc_error\n");
+	e->color_infos->obj_tmp = NULL;
 	e->nl = 0;
 	e->name = "RayTracer V1";
 	e->width = WIDTH;

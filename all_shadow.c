@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 17:05:35 by avella            #+#    #+#             */
-/*   Updated: 2016/05/28 15:29:39 by avella           ###   ########.fr       */
+/*   Updated: 2016/06/13 08:54:05 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			shadow_cyl(t_obj *obj, t_env *e)
 	t_vec3d		sl;
 
 	sl = (t_vec3d){e->sl.x, e->sl.y, e->sl.z};
-	eo = eye_or(e->pos, obj->pos);
+	eo = eye_or(e->position, obj->pos);
 	rotate_x(&(eo.x), &(eo.y), &(eo.z), -obj->rot.x);
 	rotate_y(&(eo.x), &(eo.y), &(eo.z), -obj->rot.y);
 	rotate_z(&(eo.x), &(eo.y), &(eo.z), -obj->rot.z);
@@ -46,7 +46,7 @@ int			shadow_sphere(t_obj *obj, t_env *e)
 	t_vec3d		sl;
 
 	sl = (t_vec3d){e->sl.x, e->sl.y, e->sl.z};
-	eo = eye_or(e->pos, obj->pos);
+	eo = eye_or(e->position, obj->pos);
 	rotate_x(&(eo.x), &(eo.y), &(eo.z), -obj->rot.x);
 	rotate_y(&(eo.x), &(eo.y), &(eo.z), -obj->rot.y);
 	rotate_z(&(eo.x), &(eo.y), &(eo.z), -obj->rot.z);
@@ -71,7 +71,7 @@ int			shadow_cone(t_obj *obj, t_env *e)
 	t_vec3d		sl;
 
 	sl = (t_vec3d){e->sl.x, e->sl.y, e->sl.z};
-	eo = eye_or(e->pos, obj->pos);
+	eo = eye_or(e->position, obj->pos);
 	rotate_x(&(eo.x), &(eo.y), &(eo.z), -obj->rot.x);
 	rotate_y(&(eo.x), &(eo.y), &(eo.z), -obj->rot.y);
 	rotate_z(&(eo.x), &(eo.y), &(eo.z), -obj->rot.z);
@@ -117,7 +117,7 @@ double		inter_shadow(t_env *e, t_vec3d *my_pos)
 	subs = e->obj;
 	give = 0;
 	my_shadow = 0;
-	e->sl = a_moin_b(my_pos, &(e->pos));
+	e->sl = a_moin_b(my_pos, &(e->position));
 	e->sz = sqrt(e->sl.x * e->sl.x + e->sl.y * e->sl.y + e->sl.z * e->sl.z);
 	e->sl.x = e->sl.x / e->sz;
 	e->sl.y = e->sl.y / e->sz;
