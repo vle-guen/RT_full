@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 17:10:06 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 09:01:06 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 09:53:41 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ void	give_effect(t_env *e)
 void	all_effect(t_env *e)
 {
 	give_effect(e);
-	e->pixel_color = plus(&(e->pixel_color), &(e->effect.bri));
-       	limit_for_vec(&(e->pixel_color), 0, 1);
-	e->pixel_color = a_x_b(&(e->pixel_color), &(e->effect.light));
+	e->color_infos->pixel_color = plus(&(e->color_infos->pixel_color),
+	&(e->effect.bri));
+	limit_for_vec(&(e->color_infos->pixel_color), 0, 1);
+	e->color_infos->pixel_color = a_x_b(&(e->color_infos->pixel_color),
+	&(e->effect.light));
 }
 
 void	move_cam(t_env *e, int keycode)

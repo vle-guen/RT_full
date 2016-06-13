@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 17:08:55 by avella            #+#    #+#             */
-/*   Updated: 2016/06/09 13:00:06 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 09:54:38 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void		my_pixel_put_to_image(t_img *myimg, int x, int y, int color)
 
 void		pixel_put_to_img(t_env *e, int x, int y)
 {
-	int color;
+	int	color;
 
-	color = (int)(e->pixel_color.z * 256) % 256;
-	color += ((int)(e->pixel_color.y * 256) % 256) * 256;
-	color += ((int)(e->pixel_color.x * 256) % 256) * 256 * 256;
+	color = (int)(e->color_infos->pixel_color.z * 256) % 256;
+	color += ((int)(e->color_infos->pixel_color.y * 256) % 256) * 256;
+	color += ((int)(e->color_infos->pixel_color.x * 256) % 256) * 256 * 256;
 	my_pixel_put_to_image(e->img, x, y, color);
 }

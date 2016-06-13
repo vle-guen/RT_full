@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:30:13 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 08:58:27 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 09:48:50 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct						s_color
 {
 	double			value;
 	t_obj			*obj_tmp;
+	t_vec3d			pixel_color;
 }									t_color;
 
 typedef struct						s_env
@@ -111,7 +112,6 @@ typedef struct						s_env
   int nb_ref;
   int s;
   int y;
-	t_vec3d			pixel_color;
   t_img *sol;
 	t_vec3d			eye_pos;
 	t_vec3d			eye_dir;

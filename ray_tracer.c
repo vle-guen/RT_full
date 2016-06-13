@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 17:41:04 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 09:23:01 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 09:55:16 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,10 +186,10 @@ t_vec3d	color_type_0(t_env *e)
 	mine.y = arrondi(e->position.y / 2);
 	mine.z = arrondi(e->position.z / 2); 
 	if(fmod(mine.x+mine.z+mine.y,2) == 0)
-		e->pixel_color = (t_vec3d){0,0,0};
+		e->color_infos->pixel_color = (t_vec3d){0,0,0};
 	else
-		e->pixel_color = (t_vec3d){1,1,1};
-	return (e->pixel_color);
+		e->color_infos->pixel_color = (t_vec3d){1,1,1};
+	return (e->color_infos->pixel_color);
 }
 
 t_vec3d	final_color(t_env *e)
@@ -201,17 +201,17 @@ t_vec3d	final_color(t_env *e)
 
 	e->color_infos->value = 100000000;
 	e->color_infos->obj_tmp = all_inter(e);
-	e->pixel_color = (t_vec3d){0,0,0};
+	e->color_infos->pixel_color = (t_vec3d){0,0,0};
 	color = (t_vec3d){0,0,0};
 	if (e->color_infos->obj_tmp && e->color_infos->value > 0.0001)
 	{
-		e->pixel_color = (t_vec3d){e->color_infos->obj_tmp->color.x,
+		e->color_infos->pixel_color = (t_vec3d){e->color_infos->obj_tmp->color.x,
 		e->color_infos->obj_tmp->color.y, e->color_infos->obj_tmp->color.z};
 		if (e->color_infos->obj_tmp->type == 0)
-			e->pixel_color = color_type_0(e);
+			e->color_infos->pixel_color = color_type_0(e);
 		if (e->color_infos->value < 100000000)
 			give_my_pos(e);
-		color = e->pixel_color;
+		color = e->color_infos->pixel_color;
 		normal = give_vec(e->color_infos->obj_tmp, e);
 	  //color = reflexion_color(e, normal, color);
 	  //color = refraction_color(e,normal, color);
@@ -238,13 +238,13 @@ t_vec3d	final_color(t_env *e)
 t_vec3d	give_color_to_pixel(t_env *e, double x, double y)
 {
 	eye_pos_dir(e, x, y);
-	e->pixel_color = (t_vec3d){0, 0, 0};
+	e->color_infos->pixel_color = (t_vec3d){0, 0, 0};
 	e->nb_ref = 0;
 	e->type_actual = 12;
 	e->myetat = 0;
 	e->myv = 0;
-	e->pixel_color = final_color(e);
-	return (e->pixel_color);
+	e->color_infos->pixel_color = final_color(e);
+	return (e->color_infos->pixel_color);
 }
 
 void	init_image(t_env *e)
@@ -285,7 +285,7 @@ void	ray_tracer(t_env *e)
 		{
 		  e->s = 0;
 		  e->x = x;
-		  e->pixel_color = give_color_to_pixel(e, x, y);
+		  e->color_infos->pixel_color = give_color_to_pixel(e, x, y);
 		  if(e->no == 0)
 		    pixel_put_to_img(e, x, y);
 		  e->no = 0;
