@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 17:41:04 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:04:33 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:37:12 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,15 +256,18 @@ void	init_image(t_env *e)
 	b = 0;
 	e->no = 0;
 	e->sky = 0;
-	e->img = (t_img *)malloc(sizeof(t_img) * 1);
-	e->skybox = (t_img *)malloc(sizeof(t_img) * 1);
-	e->sol = (t_img *)malloc(sizeof(t_img) * 1);
+	if (!(e->img = (t_img *)malloc(sizeof(t_img) * 1)))
+		ft_putstr("erreur de malloc\n");
+	if (!(e->skybox = (t_img *)malloc(sizeof(t_img) * 1)))
+		ft_putstr("erreur de malloc\n");
+	if (!(e->sol = (t_img *)malloc(sizeof(t_img) * 1)))
+		ft_putstr("erreur de malloc\n");
 	e->img->img_ptr = mlx_new_image(e->mlx, e->width, e->height);
 	e->img->data = mlx_get_data_addr(e->img->img_ptr,
 	&e->img->bpp, &e->img->sizeline, &e->img->endian);
 	e->skybox->img_ptr = mlx_xpm_file_to_image(e->mlx, "cart.xpm", &(a), &(b));
 	e->skybox->data = mlx_get_data_addr(e->skybox->img_ptr,
-					    &(e->skybox->bpp), &(e->skybox->sizeline), &(e->skybox->endian));
+    &(e->skybox->bpp), &(e->skybox->sizeline), &(e->skybox->endian));
 	e->sol->img_ptr = mlx_xpm_file_to_image(e->mlx, "sol.xpm", &(a), &(b));
 	e->sol->data = mlx_get_data_addr(e->sol->img_ptr,
 	&(e->sol->bpp), &(e->sol->sizeline), &(e->sol->endian));

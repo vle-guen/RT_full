@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:30:13 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:10:17 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:31:29 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,38 +42,38 @@ typedef struct						s_img
 
 typedef struct						s_vec3d
 {
-	double x;
-	double y;
-	double z;
+	double			x;
+	double			y;
+	double			z;
 }									t_vec3d;
 
 typedef struct						s_pars
 {
-	int		i;
-	char	*val1;
-	char	*val2;
-	char	*val3;
+	int				i;
+	char			*val1;
+	char			*val2;
+	char			*val3;
 }									t_pars;
 
 typedef struct						s_effect
 {
-	t_vec3d	bri;
-	t_vec3d	vec;
-	double	shadow;
-	t_vec3d	light;
+	t_vec3d			bri;
+	t_vec3d			vec;
+	double			shadow;
+	t_vec3d			light;
 }									t_effect;
 
 typedef struct						s_obj
 {
-  t_vec3d tab_pos[3];
+	t_vec3d			tab_pos[3];
 	t_vec3d			rot;
 	t_vec3d			color;
 	double			size;
 	double			intens;
 	int				type;
 	t_vec3d			pos;
-  double ref;
-  double refraction;
+	double			ref;
+	double			refraction;
 	struct s_obj	*next;
 }									t_obj;
 
@@ -86,11 +86,11 @@ typedef struct						s_color
 
 typedef struct						s_env
 {
-  int sky;
-  int no;
+	t_color			*color_infos;
+	int				sky;
+	int				no;
 	t_vec3d			sl;
 	t_vec3d			position;
-	t_color			*color_infos;
 	t_effect		effect;
 	t_obj			*obj;
 	t_img			*skybox;
@@ -100,19 +100,19 @@ typedef struct						s_env
 	char			*name;
 	t_img			*img;
 	void			*mlx;
-  double myv;
+	double			myv;
 	double			det;
-  double myetat;
+	double			myetat;
 	double			v2;
 	double			v;
 	void			*win;
 	int				height;
 	int				width;
-  double type_actual;
-  int nb_ref;
-  int s;
-  int y;
-  t_img *sol;
+	double			type_actual;
+	int				nb_ref;
+	int				s;
+	int				y;
+	t_img			*sol;
 	t_vec3d			eye_pos;
 	t_vec3d			eye_dir;
 	t_vec3d			ray_origin;
@@ -132,16 +132,14 @@ t_vec3d								plus(t_vec3d *a, t_vec3d *b);
 t_vec3d								mult_value(t_vec3d *a, double value);
 void								ajust(t_vec3d *vec);
 double								dot_product(t_vec3d *a, t_vec3d *b);
-t_vec3d								a_moin_b(t_vec3d *a, t_vec3d *b);
+t_vec3d								a_moins_b(t_vec3d *a, t_vec3d *b);
 t_vec3d								x_moin_x(t_vec3d *a, t_vec3d *b);
 double								lim(double x, double min, double max);
-void								limit_for_vec(t_vec3d *vec,
-									double a, double b);
+void								limit_for_vec(t_vec3d *vec,														double a, double b);
 t_vec3d								a_x_b(t_vec3d *a, t_vec3d *b);
 void								init_env(t_env *e);
 t_vec3d								light_effect(t_env *e);
-double								phong_alg(t_obj *obj,
-									t_env *e);
+double								phong_alg(t_obj *obj, t_env *e);
 t_vec3d								my_light(t_env *e);
 t_vec3d								lambert_alg(t_obj *obj, t_env *e);
 t_vec3d								give_vec(t_obj *obj, t_env *e);
@@ -149,14 +147,13 @@ void								ray_tracer(t_env *e);
 void								init_viewpoint(t_env *e);
 void								init_eye(t_env *e);
 void								get_lightspot_number(t_env *e);
-t_vec3d								eye_or(t_vec3d ray_or,
-									t_vec3d pos);
-void								rotate_z(double *x,
-									double *y, double *z, double angle);
-void								rotate_x(double *x,
-									double *y, double *z, double angle);
-void								rotate_y(double *x,
-									double *y, double *z, double angle);
+t_vec3d								eye_or(t_vec3d ray_or, t_vec3d pos);
+void								rotate_x(double *x,double *y, double *z,
+									double angle);
+void								rotate_y(double *x, double *y, double *z,
+									double angle);
+void								rotate_z(double *x,	double *y, double *z,
+									double angle);
 void								parsing(t_env *e, int argc, char *av);
 void								movable(int keycode, t_env *e, int etat);
 void								obj_rot(t_env *e, int action, int etat);
@@ -166,8 +163,8 @@ int									expose_hook(t_env *e);
 void								print_obj(int etat);
 double								ret_val(double a, double b, double det);
 t_vec3d								eye_or(t_vec3d ray_or, t_vec3d pos);
-int									ret_val2(double a, double b,
-									double det, t_env *e);
+int									ret_val2(double a, double b, double det,
+									t_env *e);
 char								*chaine2(char *ch);
 char								*chaine(char *ch);
 t_obj								*add_list(t_env *e);
@@ -183,7 +180,7 @@ void								cut_obj(char *temp, t_obj *obj);
 void								trait_obj(char *here, t_obj *obj);
 void								cut_pov(char *temp, t_obj *obj);
 void								trait_pov(char *here, t_obj *obj);
-void            my_pixel_put_to_image(t_img *myimg, int x, int y, int color);
-void    eye_pos_dir(t_env *e, double x, double y);
-t_vec3d final_color(t_env *e);
+void								my_pixel_put_to_image(t_img *myimg, int x, int y, int color);
+void								eye_pos_dir(t_env *e, double x, double y);
+t_vec3d								final_color(t_env *e);
 #endif

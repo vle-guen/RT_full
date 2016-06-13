@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 17:05:35 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:05:34 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:32:20 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ double		inter_shadow(t_env *e, t_vec3d *my_pos)
 	subs = e->obj;
 	give = 0;
 	my_shadow = 0;
-	e->sl = a_moin_b(my_pos, &(e->position));
+	e->sl = a_moins_b(my_pos, &(e->position));
 	e->sz = sqrt(e->sl.x * e->sl.x + e->sl.y * e->sl.y + e->sl.z * e->sl.z);
 	e->sl.x = e->sl.x / e->sz;
 	e->sl.y = e->sl.y / e->sz;

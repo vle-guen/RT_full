@@ -6,7 +6,7 @@
 /*   By: vle-guen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 10:09:15 by vle-guen          #+#    #+#             */
-/*   Updated: 2016/06/13 10:11:11 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:39:01 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,8 @@
 void	ft_free(t_env *e)
 {
 	free(e->color_infos);
+	free(e->skybox);
+	free(e->img);
+	free(e->sol);
+	free(e);
 }

@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:59:29 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:00:41 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:31:14 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vec3d		give_vec(t_obj *obj, t_env *e)
 	//rotate en negatif pour afficher dans plan
 	my_vec = (t_vec3d){obj->rot.x, obj->rot.y,obj->rot.z};
 	if (obj->type == 1)
-	  my_vec = a_moin_b(&(e->position), &obj->pos);
+	  my_vec = a_moins_b(&(e->position), &obj->pos);
 	else if (obj->type == 2 || obj->type == 3)
 	{
 		my_vec.x = e->position.x - obj->pos.x;
@@ -44,7 +44,7 @@ t_vec3d		lambert_alg(t_obj *obj, t_env *e)
 	double		value;
 	double		d;
 
-	light = a_moin_b(&obj->pos, &(e->position));
+	light = a_moins_b(&obj->pos, &(e->position));
 	ajust(&light);
 	d = sqrt((e->position.x - obj->pos.x) * (e->position.x - obj->pos.x) +
 			(e->position.y - obj->pos.y) * (e->position.y - obj->pos.y) +
@@ -93,7 +93,7 @@ double		phong_alg(t_obj *obj, t_env *e)
 	calc.x = e->ray_dir.x - 2 * keep * e->effect.vec.x;
 	calc.y = e->ray_dir.y - 2 * keep * e->effect.vec.y;
 	calc.z = e->ray_dir.z - 2 * keep * e->effect.vec.z;
-	light = a_moin_b(&obj->pos, &(e->position));
+	light = a_moins_b(&obj->pos, &(e->position));
 	ajust(&light);
 	ajust(&calc);
 	keep2 = pow(lim(dot_product(&calc, &light), 0, 1), 20);
