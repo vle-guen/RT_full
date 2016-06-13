@@ -2,9 +2,9 @@ t_vec3d  reflexincidenton(t_vec3d *incident, t_vec3d *n)
 {
   t_vec3d  v;
 
-  v.x = incident->x - 2.0 * mult(n, incident) * n->x;
-  v.y = incident->y - 2.0 * mult(n, incident) * n->y;
-  v.z = incident->z - 2.0 * mult(n, incident) * n->z;
+  v.x = incident->x - 2.0 * dot_product(n, incident) * n->x;
+  v.y = incident->y - 2.0 * dot_product(n, incident) * n->y;
+  v.z = incident->z - 2.0 * dot_product(n, incident) * n->z;
   return (v);
 }
 
