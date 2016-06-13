@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 17:45:14 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:29:45 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:52:59 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ double		dot_product(t_vec3d *a, t_vec3d *b)
 	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
 }
 
-t_vec3d		x_moin_x(t_vec3d *a, t_vec3d *b)
+/*t_vec3d		x_moins_x(t_vec3d *a, t_vec3d *b)
 {
 	t_vec3d v;
 
@@ -43,7 +43,7 @@ t_vec3d		x_moin_x(t_vec3d *a, t_vec3d *b)
 	v.y = a->z * b->x - a->x * b->z;
 	v.z = a->x * b->y - a->y * b->x;
 	return (v);
-}
+	}*/
 
 t_vec3d		a_moins_b(t_vec3d *a, t_vec3d *b)
 {

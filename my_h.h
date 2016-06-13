@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:30:13 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:31:29 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:58:48 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,33 +120,37 @@ typedef struct						s_env
 	double			sz;
 }									t_env;
 
-void								ft_free(t_env *e);
-double								norme_vector(t_vec3d *vec);
-void								all_effect(t_env *e);
-void								pixel_put_to_img(t_env *e, int x, int y);
-double								give_shadow(t_env *e);
-double								inter_shadow(t_env *e, t_vec3d *lpos);
-t_obj								*all_inter(t_env *e);
-int									event_mlx(int keycode, t_env *e);
-t_vec3d								plus(t_vec3d *a, t_vec3d *b);
-t_vec3d								mult_value(t_vec3d *a, double value);
-void								ajust(t_vec3d *vec);
-double								dot_product(t_vec3d *a, t_vec3d *b);
-t_vec3d								a_moins_b(t_vec3d *a, t_vec3d *b);
-t_vec3d								x_moin_x(t_vec3d *a, t_vec3d *b);
-double								lim(double x, double min, double max);
-void								limit_for_vec(t_vec3d *vec,														double a, double b);
-t_vec3d								a_x_b(t_vec3d *a, t_vec3d *b);
 void								init_env(t_env *e);
-t_vec3d								light_effect(t_env *e);
-double								phong_alg(t_obj *obj, t_env *e);
-t_vec3d								my_light(t_env *e);
-t_vec3d								lambert_alg(t_obj *obj, t_env *e);
-t_vec3d								give_vec(t_obj *obj, t_env *e);
-void								ray_tracer(t_env *e);
 void								init_viewpoint(t_env *e);
 void								init_eye(t_env *e);
 void								get_lightspot_number(t_env *e);
+t_vec3d								my_light(t_env *e);
+void								ft_free(t_env *e);
+int									event_mlx(int keycode, t_env *e);
+void								pixel_put_to_img(t_env *e, int x, int y);
+void								my_pixel_put_to_image(t_img *myimg,
+									int x, int y, int color);
+void								another_keycode(int keycode, t_env *e);
+int									expose_hook(t_env *e);
+void								all_effect(t_env *e);
+double								give_shadow(t_env *e);
+double								inter_shadow(t_env *e, t_vec3d *lpos);
+t_obj								*all_inter(t_env *e);
+t_vec3d								plus(t_vec3d *a, t_vec3d *b);
+t_vec3d								mult_value(t_vec3d *a, double value);
+void								ajust(t_vec3d *vec);
+double								norme_vector(t_vec3d *vec);
+double								dot_product(t_vec3d *a, t_vec3d *b);
+t_vec3d								a_moins_b(t_vec3d *a, t_vec3d *b);
+//t_vec3d								x_moins_x(t_vec3d *a, t_vec3d *b);
+double								lim(double x, double min, double max);
+void								limit_for_vec(t_vec3d *vec,														double a, double b);
+t_vec3d								a_x_b(t_vec3d *a, t_vec3d *b);
+t_vec3d								light_effect(t_env *e);
+double								phong_alg(t_obj *obj, t_env *e);
+t_vec3d								lambert_alg(t_obj *obj, t_env *e);
+t_vec3d								give_vec(t_obj *obj, t_env *e);
+void								ray_tracer(t_env *e);
 t_vec3d								eye_or(t_vec3d ray_or, t_vec3d pos);
 void								rotate_x(double *x,double *y, double *z,
 									double angle);
@@ -158,8 +162,6 @@ void								parsing(t_env *e, int argc, char *av);
 void								movable(int keycode, t_env *e, int etat);
 void								obj_rot(t_env *e, int action, int etat);
 void								norme_obj_rot(int action, t_obj *obj);
-void								another_keycode(int keycode, t_env *e);
-int									expose_hook(t_env *e);
 void								print_obj(int etat);
 double								ret_val(double a, double b, double det);
 t_vec3d								eye_or(t_vec3d ray_or, t_vec3d pos);
@@ -180,7 +182,6 @@ void								cut_obj(char *temp, t_obj *obj);
 void								trait_obj(char *here, t_obj *obj);
 void								cut_pov(char *temp, t_obj *obj);
 void								trait_pov(char *here, t_obj *obj);
-void								my_pixel_put_to_image(t_img *myimg, int x, int y, int color);
 void								eye_pos_dir(t_env *e, double x, double y);
 t_vec3d								final_color(t_env *e);
 #endif
