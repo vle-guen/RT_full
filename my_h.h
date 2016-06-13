@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:30:13 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 09:48:50 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:10:17 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,8 @@ typedef struct						s_env
 	double			sz;
 }									t_env;
 
-double norme_vector(t_vec3d *vec);
+void								ft_free(t_env *e);
+double								norme_vector(t_vec3d *vec);
 void								all_effect(t_env *e);
 void								pixel_put_to_img(t_env *e, int x, int y);
 double								give_shadow(t_env *e);
@@ -130,7 +131,7 @@ int									event_mlx(int keycode, t_env *e);
 t_vec3d								plus(t_vec3d *a, t_vec3d *b);
 t_vec3d								mult_value(t_vec3d *a, double value);
 void								ajust(t_vec3d *vec);
-double								mult(t_vec3d *a, t_vec3d *b);
+double								dot_product(t_vec3d *a, t_vec3d *b);
 t_vec3d								a_moin_b(t_vec3d *a, t_vec3d *b);
 t_vec3d								x_moin_x(t_vec3d *a, t_vec3d *b);
 double								lim(double x, double min, double max);

@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:57:53 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 09:00:31 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:03:36 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ double		inter_sphere(t_obj *obj, t_env *e)
 	rotate_x(&(ray_dir.x), &(ray_dir.y), &(ray_dir.z), -obj->rot.x);
 	rotate_y(&(ray_dir.x), &(ray_dir.y), &(ray_dir.z), -obj->rot.y);
 	rotate_z(&(ray_dir.x), &(ray_dir.y), &(ray_dir.z), -obj->rot.z);
-	a = mult(&(ray_dir), &(ray_dir));
-	b = mult(&eo, &(ray_dir));
-	c = mult(&eo, &eo) - obj->size * obj->size;
+	a = dot_product(&(ray_dir), &(ray_dir));
+	b = dot_product(&eo, &(ray_dir));
+	c = dot_product(&eo, &eo) - obj->size * obj->size;
 	e->det = b * b - a * c;
 	if (e->det < 0.0001)
 		return (-1);
@@ -127,8 +127,8 @@ double		inter_plan(t_obj *obj, t_env *e)
 {
 	double value;
 
-	value = -((mult(&obj->rot, &(e->ray_origin)) - mult(&obj->rot, &obj->pos)) \
-			/ mult(&obj->rot, &(e->ray_dir)));
+	value = -((dot_product(&obj->rot, &(e->ray_origin))
+	- dot_product(&obj->rot, &obj->pos)) / dot_product(&obj->rot, &(e->ray_dir)));
 	if (value < 0.0001)
 		return (-1);
 	return (value);

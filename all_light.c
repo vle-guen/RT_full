@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:59:29 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 08:51:19 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:00:41 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_vec3d		lambert_alg(t_obj *obj, t_env *e)
 			(e->position.y - obj->pos.y) * (e->position.y - obj->pos.y) +
 			(e->position.z - obj->pos.z) * (e->position.z - obj->pos.z));
 	d = lim(sqrt(1 / (d * (1.0 - obj->intens))), 0, 1);
-	value = lim(mult(&(e->effect.vec), &light), 0, 1);
+	value = lim(dot_product(&(e->effect.vec), &light), 0, 1);
 	if (e->effect.vec.x == 0 && e->effect.vec.y == 1 && e->effect.vec.z == 0)
 		value = 1;
 	form = mult_value(&obj->color, value);
@@ -89,14 +89,14 @@ double		phong_alg(t_obj *obj, t_env *e)
 	double		keep;
 	double		keep2;
 
-	keep = mult(&(e->effect.vec), &(e->ray_dir));
+	keep = dot_product(&(e->effect.vec), &(e->ray_dir));
 	calc.x = e->ray_dir.x - 2 * keep * e->effect.vec.x;
 	calc.y = e->ray_dir.y - 2 * keep * e->effect.vec.y;
 	calc.z = e->ray_dir.z - 2 * keep * e->effect.vec.z;
 	light = a_moin_b(&obj->pos, &(e->position));
 	ajust(&light);
 	ajust(&calc);
-	keep2 = pow(lim(mult(&calc, &light), 0, 1), 20);
+	keep2 = pow(lim(dot_product(&calc, &light), 0, 1), 20);
 	form = lim(keep2, 0, 1);
 	form *= pow(obj->intens, 0.5);
 	return (form);

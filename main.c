@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 17:10:06 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 09:53:41 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:08:54 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int		main(int ac, char **av)
 	mlx_expose_hook(e.win, expose_hook, &e);
 	mlx_key_hook(e.win, event_mlx, &e);
 	mlx_loop(e.mlx);
+	ft_free(&e);
 	return (0);
 }

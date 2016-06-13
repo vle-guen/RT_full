@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 17:41:04 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 09:55:16 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:04:33 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ t_vec3d  ft_reflex(t_vec3d *incident, t_vec3d *n)
 {
   t_vec3d  v;
   
-  v.x = incident->x - 2.0 * mult(n, incident) * n->x;
-  v.y = incident->y - 2.0 * mult(n, incident) * n->y;
-  v.z = incident->z - 2.0 * mult(n, incident) * n->z;
+  v.x = incident->x - 2.0 * dot_product(n, incident) * n->x;
+  v.y = incident->y - 2.0 * dot_product(n, incident) * n->y;
+  v.z = incident->z - 2.0 * dot_product(n, incident) * n->z;
   return (v);
 }
 
@@ -75,7 +75,7 @@ t_vec3d   refract(t_env *e, t_vec3d *normal)//t_vec3d *ray, t_vec3d *normal)
   double n2 = 1.05;//no idea;//1 = toute la sphere
  
   n = n1 / n2;
-  cosi = -1 * mult(normal, &(e->ray_dir));
+  cosi = -1 * dot_product(normal, &(e->ray_dir));
   sint2 = n * n * (1.0 - cosi * cosi);
    if (sint2 > 1.0)
      return(e->ray_dir);

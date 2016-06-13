@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 17:05:35 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 08:54:05 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/13 10:05:34 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int			shadow_sphere(t_obj *obj, t_env *e)
 	rotate_x(&(sl.x), &(sl.y), &(sl.z), -obj->rot.x);
 	rotate_y(&(sl.x), &(sl.y), &(sl.z), -obj->rot.y);
 	rotate_z(&(sl.x), &(sl.y), &(sl.z), -obj->rot.z);
-	a = mult(&(sl), &(sl));
-	b = mult(&eo, &(sl));
-	c = mult(&eo, &eo) - obj->size * obj->size;
+	a = dot_product(&(sl), &(sl));
+	b = dot_product(&eo, &(sl));
+	c = dot_product(&eo, &eo) - obj->size * obj->size;
 	e->det = b * b - a * c;
 	if (e->det > 0.001)
 		return (ret_val2(a, b, e->det, e));

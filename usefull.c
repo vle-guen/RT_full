@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 17:45:14 by avella            #+#    #+#             */
-/*   Updated: 2016/05/27 17:46:26 by avella           ###   ########.fr       */
+/*   Updated: 2016/06/13 09:57:37 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ajust(t_vec3d *vec)
 	vec->z *= n;
 }
 
-double		mult(t_vec3d *a, t_vec3d *b)
+double		dot_product(t_vec3d *a, t_vec3d *b)
 {
 	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
 }
