@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:23:44 by avella            #+#    #+#             */
-/*   Updated: 2016/05/28 15:24:59 by avella           ###   ########.fr       */
+/*   Updated: 2016/06/14 09:56:13 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ void		trait_obj(char *here, t_obj *obj)
 		obj->color.x = lim(obj->color.x / 256, 0, 1);
 		obj->color.y = lim(obj->color.y / 256, 0, 1);
 		obj->color.z = lim(obj->color.z / 256, 0, 1);
+	}
+	if ((here2 = ft_strstr(temp, "coeff(")) && here2 != NULL)
+	{
+		here2 = chaine2(here2);
+		obj->coeff = *vec3d(here2);
 	}
 	cut_obj(temp, obj);
 }

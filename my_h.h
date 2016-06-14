@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:30:13 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:58:48 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/14 09:57:52 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct						s_obj
 	t_vec3d			tab_pos[3];
 	t_vec3d			rot;
 	t_vec3d			color;
+	t_vec3d			coeff;
 	double			size;
 	double			intens;
 	int				type;
@@ -135,6 +136,7 @@ int									expose_hook(t_env *e);
 void								all_effect(t_env *e);
 double								give_shadow(t_env *e);
 double								inter_shadow(t_env *e, t_vec3d *lpos);
+double								inter_hyperboloid(t_obj *obj, t_env *e);
 t_obj								*all_inter(t_env *e);
 t_vec3d								plus(t_vec3d *a, t_vec3d *b);
 t_vec3d								mult_value(t_vec3d *a, double value);

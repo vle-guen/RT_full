@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:57:53 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:03:36 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/14 09:43:13 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,8 +252,10 @@ t_obj		*all_inter(t_env *e)
 			value = inter_cyl(my_obj, e);
 		else if (my_obj->type == 2)
 			value = inter_cone(my_obj, e);
-		else if(my_obj->type == 4)
-		  value = inter_triangle(my_obj, e);
+		else if (my_obj->type == 4)
+			value = inter_triangle(my_obj, e);
+		else if (my_obj->type == 5)
+			value = inter_hyperboloid(my_obj, e);
 		if (value > 0.0001 && value < e->color_infos->value)
 		{
 		  if(e->myetat == 1 && e->myv == nb)

@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/27 17:48:06 by avella            #+#    #+#             */
-/*   Updated: 2016/05/28 15:09:13 by avella           ###   ########.fr       */
+/*   Updated: 2016/06/14 10:21:14 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	traitement(char *file, t_env *e)
 		end = in(e, here, 3, end);
 	if ((here = ft_strstr(file, "triangle{\n")) && here != NULL)
 	  end = in(e, here, 4, end);
+	if ((here = ft_strstr(file, "hyperboloid{\n")) && here != NULL)
+	  end = in(e, here, 5, end);
 	if ((here = ft_strstr(file, "plane{\n")) && here != NULL)
 		end = in(e, here, 0, end);
 	if ((here = ft_strstr(file, "pov{\n")) && here != NULL)

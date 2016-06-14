@@ -6,7 +6,7 @@
 #    By: avella <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/28 15:58:31 by avella            #+#    #+#              #
-#    Updated: 2016/06/13 10:11:33 by vle-guen         ###   ########.fr        #
+#    Updated: 2016/06/14 09:44:57 by vle-guen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ MLXFLA = -lmlx -framework OpenGL -framework AppKit
 
 SRC =   all_give.c all_inter.c all_light.c all_rotate.c all_shadow.c \
 	event.c get_next_line.c img_func.c main.c pars_one.c pars_three.c \
-	pars_two.c parsing.c ray_tracer.c small_cool_func.c usefull.c usefull_second.c free.c
+	pars_two.c parsing.c ray_tracer.c small_cool_func.c usefull.c usefull_second.c \
+	free.c quadric.c
 
 LIB = libft/libft.a
 
