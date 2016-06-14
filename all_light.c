@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:59:29 by avella            #+#    #+#             */
-/*   Updated: 2016/06/13 10:31:14 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/14 14:27:29 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vec3d		give_vec(t_obj *obj, t_env *e)
 	my_vec = (t_vec3d){obj->rot.x, obj->rot.y,obj->rot.z};
 	if (obj->type == 1)
 	  my_vec = a_moins_b(&(e->position), &obj->pos);
-	else if (obj->type == 2 || obj->type == 3)
+	else if (obj->type == 2 || obj->type == 3 || obj->type == 5)
 	{
 		my_vec.x = e->position.x - obj->pos.x;
 		my_vec.y = e->position.y - obj->pos.y;;
