@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/26 16:59:29 by avella            #+#    #+#             */
-/*   Updated: 2016/06/14 14:27:29 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/15 13:08:12 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,25 @@ t_vec3d		give_vec(t_obj *obj, t_env *e)
 	my_vec = (t_vec3d){obj->rot.x, obj->rot.y,obj->rot.z};
 	if (obj->type == 1)
 	  my_vec = a_moins_b(&(e->position), &obj->pos);
-	else if (obj->type == 2 || obj->type == 3 || obj->type == 5)
+	else if (obj->type == 2 || obj->type == 3)
 	{
 		my_vec.x = e->position.x - obj->pos.x;
 		my_vec.y = e->position.y - obj->pos.y;;
 		my_vec.z = e->position.z - obj->pos.z;
 	}
-	if(obj->type == 4)
+	else if(obj->type == 4)
 	  {
 	    //	    my_vec = e->effect.vec;
 	    my_vec.x = e->position.x - -10;//e->effect.vec.x;//-10;
 	    my_vec.y = e->position.y - 5;//e->effect.vec.y;//5;
 	    my_vec.z = e->position.z - -20;// e->effect.vec.z;//-20;
 	  }
+	else if (obj->type == 5)
+	{
+		my_vec.x = obj->normale.x;
+		my_vec.y = obj->normale.y;
+		my_vec.z = obj->normale.z;
+	}
 	ajust(&my_vec);
 	return (my_vec);
 }

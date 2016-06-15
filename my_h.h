@@ -6,7 +6,7 @@
 /*   By: avella <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 15:30:13 by avella            #+#    #+#             */
-/*   Updated: 2016/06/14 09:57:52 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/15 12:50:44 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct						s_vec3d
 	double			x;
 	double			y;
 	double			z;
+	double			norme;
 }									t_vec3d;
 
 typedef struct						s_pars
@@ -69,12 +70,15 @@ typedef struct						s_obj
 	t_vec3d			rot;
 	t_vec3d			color;
 	t_vec3d			coeff;
+	double			k;
 	double			size;
 	double			intens;
 	int				type;
 	t_vec3d			pos;
 	double			ref;
 	double			refraction;
+	t_vec3d			impact_pt;
+	t_vec3d			normale;
 	struct s_obj	*next;
 }									t_obj;
 

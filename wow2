@@ -22,8 +22,9 @@ sphere{
 }
 
 hyperboloid{
-	pos(1,2,1)
-	coeff(1,2,5)
+	pos(1,2,5)
+	size(500)
+	ref(500)
 	color(256,0,0)
 }
 
