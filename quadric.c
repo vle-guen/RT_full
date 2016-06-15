@@ -6,7 +6,7 @@
 /*   By: vle-guen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 08:50:25 by vle-guen          #+#    #+#             */
-/*   Updated: 2016/06/15 13:17:18 by vle-guen         ###   ########.fr       */
+/*   Updated: 2016/06/15 15:19:26 by vle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ t_vec3d		normalize(t_vec3d a)
 	rotate_z(&(eo.x), &(eo.y), &(eo.z), -obj->rot.z);
 	rotate_x(&(ray_dir.x), &(ray_dir.y), &(ray_dir.z), -obj->rot.x);
 	rotate_y(&(ray_dir.x), &(ray_dir.y), &(ray_dir.z), -obj->rot.y);
-	rotate_z(&(ray_dir.x), &(ray_dir.y), &(ray_dir.z), -obj->rot.z);*/
-	/*	a = (pow(obj->coeff.y, 2) * pow(obj->coeff.z, 2) * pow(ray_dir.x, 2))
+	rotate_z(&(ray_dir.x), &(ray_dir.y), &(ray_dir.z), -obj->rot.z);
+*	a = (pow(obj->coeff.y, 2) * pow(obj->coeff.z, 2) * pow(ray_dir.x, 2))
 		+ (pow(obj->coeff.x, 2)	* pow(obj->coeff.z, 2) * pow(ray_dir.y, 2))
 		- (pow(obj->coeff.x, 2) * pow(obj->coeff.y, 2) * pow(ray_dir.z, 2));
 	b = (2 * pow(obj->coeff.y, 2) * pow(obj->coeff.z, 2) * eo.x * ray_dir.x)

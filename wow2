@@ -16,15 +16,15 @@ spot{
 }
 
 sphere{
-	pos(-10,5,-14)
+	pos(-5,5,-14)
 	size(300)
 	color(0,0,256)
 }
 
 hyperboloid{
-	pos(1,2,5)
-	size(500)
-	ref(500)
+	pos(0,2,0)
+	size(250)
+	ref(250)
 	color(256,0,0)
 }
 
